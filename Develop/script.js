@@ -92,76 +92,65 @@ function generatePassword() {
     "|",
   ];
 
-
-// the length determined by the user.
-function generatePasswordLength() {
-var personSelect = parseInt(prompt("You must enter between 10 and 100:"));
-if (isNaN(personSelect) || personSelect < 10 || personSelect > 100) {
-    return generatePasswordLength();
-}
-return personSelect;
-};
-// to make sure one of the choices is selected
-function getSelect(userChoice) {
+  // the length determined by the user.
+  function generatePasswordLength() {
+    var personSelect = parseInt(prompt("You must enter between 10 and 100:"));
+    if (isNaN(personSelect) || personSelect < 10 || personSelect > 100) {
+        alert("Invalid input. Enter a number between 10 - 100")
+      return generatePasswordLength();
+    }
+    return personSelect;
+  }
+  // to make sure one of the choices is selected
+  function getSelect(userChoice) {
     var userPrompt = "would you like" + userChoice + "characters (y/n)?";
     var personSelect = prompt(userPrompt).toLocaleLowerCase();
 
     if (personSelect === "yes") {
-        return true;
-    }else if (personSelect === "no") {
-        return false;
-
-    }else {
-        return getSelect(userChoice)
+      return true;
+    } else if (personSelect === "no") {
+      return false;
+    } else {
+      return getSelect(userChoice);
     }
-    
-}
+  }
 
-function generatePassword() {
-var selectedArray = [];
-var passwordLength = generatePasswordLength();
-var typeSelected = false;
+  function generatePassword() {
+    var selectedArray = [];
+    var passwordLength = generatePasswordLength();
+    var typeSelected = false;
 
-var lowerChoice = getSelect("lower")
-var upperChoice = getSelect("upper");
-var numberChoice = getSelect("number");
-var specialsChoice = getSelect("specials");
+    var lowerChoice = getSelect("lower");
+    var upperChoice = getSelect("upper");
+    var numberChoice = getSelect("number");
+    var specialsChoice = getSelect("specials");
 
-} 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if (lowerChoice || upperChoice || numberChoice || specialsChoice) {
+      typeSelected = true;
+    } else {
+      alert("You must select one of the following");
+      return generatePassword();
+    }
+    if (lowerChoice) {
+      selectedArray = selectedArray.concat(lower);
+    }
+    if (upperChoice) {
+      selectedArray = selectedArray.concat(upper);
+    }
+    if (numberChoice) {
+      selectedArray = selectedArray.concat(number);
+    }
+    if (specialsChoice) {
+      selectedArray = selectedArray.concat(specials);
+    }
+    var passwordString = "";
+    for (var i = 0; i < passwordLength; i++) {
+      passwordString +=
+        selectedArray[Math.floor(Math.random() * selectedArray.length)];
+    }
+    return passwordString;
+  }
+  generatePassword()
 }
 
 // Get references to the #generate element
