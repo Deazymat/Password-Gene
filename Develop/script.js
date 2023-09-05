@@ -1,4 +1,6 @@
+// function for the password to be based off of the users input
 function generatePassword() {
+  // array of lowercase
   var lower = [
     "a",
     "b",
@@ -27,6 +29,7 @@ function generatePassword() {
     "y",
     "z",
   ];
+  //   array of uppercase
   var upper = [
     "A",
     "B",
@@ -55,8 +58,9 @@ function generatePassword() {
     "Y",
     "Z",
   ];
+  // array of numbers
   var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-
+  //array of special characters
   var specials = [
     "!",
     "@",
@@ -87,6 +91,77 @@ function generatePassword() {
     "}",
     "|",
   ];
+
+
+// the length determined by the user.
+function generatePasswordLength() {
+var personSelect = parseInt(prompt("You must enter between 10 and 100:"));
+if (isNaN(personSelect) || personSelect < 10 || personSelect > 100) {
+    return generatePasswordLength();
+}
+return personSelect;
+};
+// to make sure one of the choices is selected
+function getSelect(userChoice) {
+    var userPrompt = "would you like" + userChoice + "characters (y/n)?";
+    var personSelect = prompt(userPrompt).toLocaleLowerCase();
+
+    if (personSelect === "yes") {
+        return true;
+    }else if (personSelect === "no") {
+        return false;
+
+    }else {
+        return getSelect(userChoice)
+    }
+    
+}
+
+function generatePassword() {
+var selectedArray = [];
+var passwordLength = generatePasswordLength();
+var typeSelected = false;
+
+var lowerChoice = getSelect("lower")
+var upperChoice = getSelect("upper");
+var numberChoice = getSelect("number");
+var specialsChoice = getSelect("specials");
+
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 // Get references to the #generate element
